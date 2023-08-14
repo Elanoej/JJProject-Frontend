@@ -1,0 +1,21 @@
+#root {
+  max-width: 100%;
+  text-align: center;
+}
+
+.body-app-div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-preset > td {
+  width: 300px;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  align-items: center;
+}
