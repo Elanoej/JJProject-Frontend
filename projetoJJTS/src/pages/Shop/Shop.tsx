@@ -1,4 +1,3 @@
-import Menu from "../Menu/Menu"
 import "./Shop.css"
 import { useProductData } from "../../Hooks/useProductData"
 import Product from "../../components/Product/Product";
@@ -13,7 +12,6 @@ function Shop() {
     return (
         <div className="shop-container">
             <h1>Loja</h1>
-            <Menu />
             <table className="shop-table">
                 <thead className="loja-main-thead">
                     <tr className="table-preset">

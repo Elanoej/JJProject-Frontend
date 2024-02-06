@@ -1,6 +1,6 @@
 import { ServiceOrderData } from "./ServiceOrderData";
 
-export interface Client {
+export interface ClientData {
     id: number,
     name: string,
     address: string,

@@ -4,6 +4,7 @@ import Oficina from './pages/Oficina/Oficina'
 import './App.css'
 import Header from "./components/Header/Header";
 import Shop from "./pages/Shop/Shop";
+import Clients from "./pages/Clients/Clients";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/loja" element={<Shop />} />
             <Route path="/oficina" element={<Oficina />} />
+            <Route path="/clientes" element={<Clients />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

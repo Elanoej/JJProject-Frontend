@@ -1,6 +1,6 @@
 import { useServiceOrderData } from "../../Hooks/useServiceOrderData";
+import "./Oficina.css";
 import ServiceOrder from "../../components/ServiceOrder/ServiceOrder";
-import Menu from "../Menu/Menu";
 
 function Oficina() {
 
@@ -9,7 +9,11 @@ function Oficina() {
     return (
         <div className="container-oficina">
             <h1>Oficina</h1>
-            <Menu/>
+            <div className="oficina-types">
+                <a href="/clientes">Clientes</a>
+                <a href="/aparelhos">Aparelhos</a>
+            </div>
+
             <table className="oficina-table">
                 <thead className="oficina-main-thead">
                     <tr className="table-preset">
@@ -31,6 +35,7 @@ function Oficina() {
                     )}
                 </thead>
             </table>
+            
         </div>
     )
 }

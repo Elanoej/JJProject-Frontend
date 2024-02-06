@@ -1,4 +1,4 @@
-import { Client } from "./Client";
+import { Client } from "./ClientData";
 
 export interface ServiceOrderData {
     id: number,
