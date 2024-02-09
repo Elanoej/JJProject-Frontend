@@ -15,12 +15,15 @@ function Shop() {
             <table className="shop-table">
                 <thead className="loja-main-thead">
                     <tr className="table-preset">
-                        <th>Id</th>
+                        <th style={{width: "5%"}}>Id</th>
                         <th>Nome</th>
                         <th>Preço</th>
                         <th>Tipo</th>
                         <th>Quantidade</th>
+                        <th style={{width: "10%"}}>Opções</th>
                     </tr>
+                </thead>
+                <tbody className="shop-table-body">
                     {data?.map(productData =>
                         <Product
                             id={productData.id}
@@ -31,7 +34,8 @@ function Shop() {
                         />
                     )}
                     
-                </thead>
+                </tbody>
+                           
             </table>
             <CreateModal isOpen={isModalOpen} setModalOpen={() => setIsModalOpen(!isModalOpen)}/>
             <button onClick={() => setIsModalOpen(true)} className="btn-modal">+</button>

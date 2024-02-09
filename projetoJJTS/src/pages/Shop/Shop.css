@@ -10,6 +10,15 @@
   align-items: center;
 }
 
+.shop-table-body .product {
+  transition: 0.3s;
+  height: 6vh;
+}
+
+.shop-table-body :hover{
+  transform: scale(1.05) ;
+}
+
 .loja-main-div {
   display: flex;
   flex-direction: column;
@@ -35,5 +44,21 @@
 .btn-modal:hover {
   background-color: #555555;
   color: white;
+}
+
+.btn-options {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.editProduct{
+  background-color: gray;
+}
+
+ button {
+  background: none;
+  border-style: hidden;
+  font-size: 20px;
 }
 

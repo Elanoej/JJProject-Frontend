@@ -1,10 +1,9 @@
-import { Client } from "../../interface/ClientData";
-
+import { ClientData } from "../../interface/ClientData"
 
 interface ServiceOrderProps {
     id: number,
     data: Date,
-    cliente: Client,
+    cliente: ClientData,
     modeloDoProduto: string,
     detalhesDoProduto: string,
     inforCliente: string,
@@ -15,7 +14,7 @@ function ServiceOrder({id, data, cliente, modeloDoProduto}: ServiceOrderProps){
     return (
         <tr className="serviceOrder">
             <th>{id}</th>
-            <th>{data.toString()}</th>
+            <th>{data.toString().split("T")[1]}</th>
             <th>{cliente.name}</th>
             <th>{modeloDoProduto}</th>
         </tr>

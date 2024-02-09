@@ -2,7 +2,7 @@
     width: 80vw;
 }
 
-.table-head > tr > th {
+.table-head tr td {
     width: 300px;
     border-style: solid;
     border-color: white;
@@ -10,19 +10,23 @@
     align-items: center;
 }
 
-.bt-img {
-    height: 3vw;
-    width: 3vw;
+.btn-overlay {
+    cursor: pointer;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+  
     background-color: white;
-    border-radius: 25vw;
-    border-style: hidden;
+    color: black;
+    border-radius: 10px;
+    transition-duration: 0.3s;
 }
 
-.bt-img:hover{
-    background-color: aqua;
-}
-
-.bt-img > img {
-    width: 100%;
-    height: 100%;
+.btn-overlay:hover {
+    background-color: #555555;
+    color: white;
 }

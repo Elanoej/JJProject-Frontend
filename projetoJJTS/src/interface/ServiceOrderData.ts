@@ -1,9 +1,9 @@
-import { Client } from "./ClientData";
+import { ClientData } from "./ClientData";
 
 export interface ServiceOrderData {
     id: number,
     date: Date,
-    client: Client,
+    client: ClientData,
     productModel: string,
     productDetails: string,
     clientInfos: string,

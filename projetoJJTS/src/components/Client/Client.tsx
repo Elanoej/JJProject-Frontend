@@ -1,21 +1,19 @@
-import { useState } from "react"
+import { MdDelete, MdEdit } from "react-icons/md"
 import { ClientData } from "../../interface/ClientData"
-import { Overlay } from "../Overlay/Overlay"
+
 
 function Client(clientData: ClientData) {
-
-    const [ isOverlayOpen, setIsOverlayOpen ] = useState(false)
-
+    
     return(
         <tr className="product">
-            <th>{clientData.id}</th>
-            <th>{clientData.name}</th>
-            <th>{clientData.address}</th>
-            <th>{clientData.cellphone}</th>
-            <th>
-                <Overlay isOpen={isOverlayOpen} setOverlayOpen={() => setIsOverlayOpen(!isOverlayOpen)} clientData={clientData}/>
-                <button className="bt-img" onClick={() => setIsOverlayOpen(true)}><img src="https://cdn-icons-png.flaticon.com/512/65/65000.png" alt="Detalhes" /></button>
-            </th>
+            <td>{clientData.id}</td>
+            <td>{clientData.name}</td>
+            <td>{clientData.address}</td>
+            <td>{clientData.cellphone}</td>
+            <td>
+                <button className="btn-options" type="button"><MdEdit /></button>
+                <button className="btn-options" type="button"><MdDelete /></button>
+            </td>
         </tr>
     )
 }

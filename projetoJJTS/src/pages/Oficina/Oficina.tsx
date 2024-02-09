@@ -17,7 +17,7 @@ function Oficina() {
             <table className="oficina-table">
                 <thead className="oficina-main-thead">
                     <tr className="table-preset">
-                        <th>Id</th>
+                        <th style={{width: "5%"}}>Id</th>
                         <th>Data</th>
                         <th>Cliente</th>
                         <th>Modelo</th>

@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useClientData } from "../../Hooks/useClientData";
 import Client from "../../components/Client/Client";
+import { Overlay } from "../../components/Overlay/Overlay";
 import "./Clients.css"
 
 function Clients() {
 
     const { data } = useClientData(); 
+    const [ isOverlayOpen, setIsOverlayOpen] = useState(false);
 
     return(
         <div className="clients-container">
@@ -12,10 +15,11 @@ function Clients() {
             <table className="client-table">
                 <thead className="table-head">
                     <tr>
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Endereço</th>
-                        <th>Celular</th>
+                        <td style={{width: "5%"}}>Id</td>
+                        <td>Nome</td>
+                        <td>Endereço</td>
+                        <td>Celular</td>
+                        <td style={{width: "10%"}}>Opções</td>
                     </tr>
                 </thead>
                 <tbody className="table-body">
@@ -30,6 +34,8 @@ function Clients() {
                     )}
                 </tbody>
             </table>
+            <Overlay isOpen={isOverlayOpen} setOverlayOpen={() => setIsOverlayOpen(!isOverlayOpen)}/>
+            <button onClick={() => setIsOverlayOpen(true)} className="btn-overlay">+</button>
         </div>
     )
 

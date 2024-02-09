@@ -30,7 +30,7 @@ export function CreateModal({isOpen, setModalOpen}: CreateModalProps){
     const [price, setPrice] = useState(0);
     const [type, setType] = useState("");
     const [quantity, setQuantity] = useState(0);
-    const { mutate , isSuccess} = useProductDataMutate();
+    const { mutate , isSuccess } = useProductDataMutate();
 
 
     const handleModalOpen = () => {
@@ -47,6 +47,7 @@ export function CreateModal({isOpen, setModalOpen}: CreateModalProps){
 
     const submit = () => {
         const productData: ProductData = {
+            id:0,
             name,
             price,
             type,
@@ -54,7 +55,7 @@ export function CreateModal({isOpen, setModalOpen}: CreateModalProps){
         }
         mutate(productData)
         if(isSuccess){
-            resetInput();
+            resetInput()
         }
     }
 
