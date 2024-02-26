@@ -1,14 +1,25 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ClientData } from "../interface/ClientData";
 import axios, { AxiosPromise } from "axios";
+import { API_URL } from "../Utils/Utils";
 
-const API_URL = "http://localhost:8080"
+
+const postClient = async (data: ClientData): AxiosPromise<any> => {
+    return await axios.post(API_URL + "/client", data);
+}
+
+const putClient = async (data: ClientData): AxiosPromise<any> => {
+    return await axios.put(API_URL + "/client", data);
+}
+
+const deleteClient = async (data: ClientData): AxiosPromise<any> => {
+    return await axios.delete(API_URL + "/client/" + data.id);
+}
 
 export function useClientMutate(){
     const queryClient = useQueryClient()
     const mutate = useMutation({
         mutationFn: postClient,
-        retry: 2,
         onSuccess: () => {
             queryClient.invalidateQueries(['client-data'])
         }
@@ -17,6 +28,26 @@ export function useClientMutate(){
     return mutate
 }
 
-const postClient = async (data: ClientData): AxiosPromise<any> => {
-    return axios.post(API_URL + "/client", data);
+export function useClientMutateUpdate(){
+    const queryClient = useQueryClient()
+    const mutate = useMutation({
+        mutationFn: putClient,
+        onSuccess: () => {
+            queryClient.invalidateQueries(['client-data'])
+        }
+    })
+
+    return mutate
+}
+
+export function useClientMutateDelete(){
+    const queryClient = useQueryClient()
+    const mutate = useMutation({
+        mutationFn: deleteClient,
+        onSuccess: () => {
+            queryClient.invalidateQueries(['client-data'])
+        }
+    })
+
+    return mutate
 }

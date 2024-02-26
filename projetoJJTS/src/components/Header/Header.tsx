@@ -11,7 +11,7 @@ function Header() {
             <div className='navigation-menu'>
                 <ul><li><a href="/" >Home</a></li></ul>
                 <ul><li><a href="/loja" >Loja</a></li></ul>
-                <ul><li><a href="/oficina" >Oficina</a></li></ul>
+                <ul><li><a href="/clientes" >Clientes</a></li></ul>
             </div>
         </nav> 
     )

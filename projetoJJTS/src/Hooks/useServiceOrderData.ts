@@ -1,8 +1,7 @@
 import axios, { AxiosPromise } from "axios"
 import { useQuery } from "@tanstack/react-query";
 import { ServiceOrderData } from "../interface/ServiceOrderData";
-
-const API_URL = "http://localhost:8080"
+import { API_URL } from "../Utils/Utils";
 
 const fetchData = async (): AxiosPromise<ServiceOrderData[]> => {
     const response = axios.get(API_URL + "/service-order");

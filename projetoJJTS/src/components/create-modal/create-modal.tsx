@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { useProductDataMutate } from "../../Hooks/useProductDataMutate";
 import { ProductData } from "../../interface/ProductData";
 
@@ -7,7 +7,8 @@ import "./CreateModal.css"
 interface InputProps {
     label: string,
     value: string | number,
-    updateValue(value: any): void
+    updateValue(value: any): void,
+    accessKey: string
 }
 
 interface CreateModalProps {
@@ -15,48 +16,52 @@ interface CreateModalProps {
     setModalOpen: () => void;
 }
 
-const Input = ({label, value, updateValue}: InputProps) =>{
+const Input = ({label, value, updateValue, accessKey}: InputProps) => {
     return(
         <>
             <label>{label}</label>
-            <input value={value} onChange={event => updateValue(event.target.value)}></input>
+            <input accessKey={accessKey} value={value} onChange={event => updateValue(event)} type={(accessKey == 'name' || accessKey == 'type') ? 'text': 'number'}></input>
         </>
     )
 }
 
 export function CreateModal({isOpen, setModalOpen}: CreateModalProps){
 
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState(0);
-    const [type, setType] = useState("");
-    const [quantity, setQuantity] = useState(0);
-    const { mutate , isSuccess } = useProductDataMutate();
+    const [ data, setData ] = useState<ProductData>({
+        id: 0,
+        name: "",
+        price: 0,
+        type: "",
+        quantity: 0
+    });
 
-
-    const handleModalOpen = () => {
-        setModalOpen();
-        resetInput();
-    }
+    const productData = useProductDataMutate();
 
     const resetInput = () => {
-        setName("");
-        setPrice(0);
-        setType("");
-        setQuantity(0);
+        const product : ProductData = {
+            id: 0,
+            name: "",
+            price: 0,
+            type: "",
+            quantity: 0
+        }
+        setData(product);
+    }
+
+    const handleModalOpen = () => {
+        resetInput();
+        setModalOpen();
+    }
+
+    const updateValue = (event:ChangeEvent<HTMLInputElement>) => {
+        setData({
+            ...data,
+            [event.target.accessKey]:event.target.value
+        })
     }
 
     const submit = () => {
-        const productData: ProductData = {
-            id:0,
-            name,
-            price,
-            type,
-            quantity
-        }
-        mutate(productData)
-        if(isSuccess){
-            resetInput()
-        }
+        productData.mutate(data, {onSuccess: resetInput});
     }
 
     if(isOpen){
@@ -66,10 +71,10 @@ export function CreateModal({isOpen, setModalOpen}: CreateModalProps){
                     <button onClick={handleModalOpen} className="btn-close">X</button>
                     <h2>Cadastre um novo produto</h2>
                     <form className="input-container">
-                      <Input label="Nome" value={name} updateValue={setName}/>
-                      <Input label="Preço" value={price} updateValue={setPrice}/>
-                      <Input label="Tipo" value={type} updateValue={setType}/>
-                      <Input label="Quantidade" value={quantity} updateValue={setQuantity}/>
+                      <Input accessKey="name" label="Nome" value={data.name} updateValue={(event) => updateValue(event)}/>
+                      <Input accessKey="price" label="Preço" value={data.price} updateValue={(event) => updateValue(event)}/>
+                      <Input accessKey="type" label="Tipo" value={data.type} updateValue={(event) => updateValue(event)}/>
+                      <Input accessKey="quantity" label="Quantidade" value={data.quantity} updateValue={(event) => updateValue(event)}/>
                     </form>
                     <button onClick={submit} className="btn-secondary">+</button>
                 </div>

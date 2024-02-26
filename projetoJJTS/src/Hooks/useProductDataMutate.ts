@@ -1,8 +1,7 @@
 import axios, { AxiosPromise } from "axios"
 import { ProductData } from "../interface/ProductData";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
-const API_URL = "http://localhost:8080"
+import { API_URL } from "../Utils/Utils";
 
 const postData = async (data: ProductData): AxiosPromise<any> => {
     return axios.post(API_URL + "/product", data);

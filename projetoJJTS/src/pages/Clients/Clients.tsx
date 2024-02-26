@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useClientData } from "../../Hooks/useClientData";
 import Client from "../../components/Client/Client";
 import { Overlay } from "../../components/Overlay/Overlay";
+
 import "./Clients.css"
 
 function Clients() {
@@ -15,20 +16,20 @@ function Clients() {
             <table className="client-table">
                 <thead className="table-head">
                     <tr>
-                        <td style={{width: "5%"}}>Id</td>
+                        <td>Id</td>
                         <td>Nome</td>
                         <td>Endereço</td>
                         <td>Celular</td>
-                        <td style={{width: "10%"}}>Opções</td>
+                        <td>Opções</td>
                     </tr>
                 </thead>
                 <tbody className="table-body">
                     {data?.map(clientData => 
                     <Client 
-                        address={clientData.address}
                         id={clientData.id}
-                        cellphone={clientData.cellphone}
                         name={clientData.name}
+                        address={clientData.address}
+                        cellphone={clientData.cellphone}
                         serviceOrders={clientData.serviceOrders}
                     />  
                     )}

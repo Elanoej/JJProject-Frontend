@@ -1,122 +1,72 @@
-import { useState } from "react";
-import { MdEdit, MdDelete, MdClose, MdAddCircle } from "react-icons/md";
+import { ChangeEvent, useState } from "react";
+import { MdEdit, MdDelete, MdClose, MdCheck } from "react-icons/md";
 import { useProductDataDelete, useProductDataUpdate } from "../../Hooks/useProductDataMutate";
 import { ProductData } from "../../interface/ProductData";
 
-interface ProductProps{
-    id: number,
-    nome: string,
-    preco: number,
-    tipo: string,
-    quantidade: number,
-}
+import "./Product.css"
 
-interface EditProductProps {
-    isEditOpen: boolean,
-    setIsEditOpen: ()=> void,
-    id: number,
-    nome: string,
-    preco: number,
-    tipo: string,
-    quantidade: number,
-}
+function Product(productData: ProductData) {
 
-function Product({id, nome, preco, tipo, quantidade}: ProductProps) {
+    const [ data, setData ] = useState<ProductData>({
+        id: productData.id,
+        name: productData.name,
+        price: productData.price,
+        quantity: productData.quantity,
+        type: productData.type
+    });
+    const [ isEditing, setIsEditing ] = useState(false);
 
-    const [ isEditOpen, setIsEditOpen] = useState(false);
-    const { mutate } = useProductDataDelete();
+    const productDelete = useProductDataDelete();
+    const productUpdate = useProductDataUpdate();
 
-    const deleteData = () => {
-        if(confirm('Você tem certeza que deseja remover "' + nome + '"?')){
-            const productData: ProductData = {
-                id,
-                name: nome,
-                price: preco,
-                type: tipo,
-                quantity: quantidade
-            }
-            mutate(productData);
-        } 
+    const handleOnChange = (event : ChangeEvent<HTMLInputElement>) => {
+        setData({
+            ...data,
+            [event.target.accessKey]: event.target.value
+        })
+    }
+
+    const resetInput = () => {
+        const product: ProductData = {
+            id: productData.id,
+            name: productData.name,
+            price: productData.price,
+            type: productData.type,
+            quantity: productData.quantity
+        }
+        setData(product);
+    }
+
+    const handleDelete = () => {
+        if(confirm('Você tem certeza que deseja remover "' + productData.name + '"?')){
+            productDelete.mutate(data);
+        }
+    }
+
+    const handleEdit = () => {
+        resetInput();
+        setIsEditing(!isEditing);
+    }
+
+    const submit = ()=>{
+        productUpdate.mutate(data);
+        setIsEditing(!isEditing);
     }
 
     return (
-        <>
-            <tr className={"product " + tipo}>
-                <td>{id}</td>
-                <td>{nome}</td>
-                <td>R${preco.toFixed(2).toString().replace(".", ",")}</td>
-                <td>{tipo}</td>
-                <td>{quantidade}</td>
-                <td>
-                    <button className="btn-options" type="button" onClick={()=>setIsEditOpen(true)}><MdEdit /></button>
-                    <button className="btn-options" type="button"><MdDelete onClick={deleteData}/></button>
-                </td>
-            </tr>
-            <EditProduct 
-                isEditOpen={isEditOpen} 
-                setIsEditOpen={() => setIsEditOpen(!setIsEditOpen)} 
-                nome={nome} 
-                preco={preco}
-                quantidade={quantidade}
-                tipo={tipo}
-                id={id}
-            />    
-        </>
+        <tr className="product">
+            <td><input type="number" value={data.id} disabled={true}/></td>
+            <td><input accessKey="name" type="text" value={data.name} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
+            <td><input accessKey="price" type={isEditing ? 'number':'text'} value={isEditing ? data.price: `R$${data.price},00`} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
+            <td><input accessKey="type" type="text" value={data.type} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
+            <td><input accessKey="quantity" type="number" value={data.quantity} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
+            <td className="td-options">
+                <button className="btn-options" type="button" onClick={() => handleEdit()}>{isEditing ? <MdClose/> : <MdEdit/>}</button>
+                <button hidden={!isEditing} onClick={submit}><MdCheck/></button>
+                <button className="btn-options" type="button" onClick={()=> handleDelete()}><MdDelete/></button>
+            </td>
+        </tr>
     )
-}
-
-function EditProduct({isEditOpen, setIsEditOpen, nome, preco, quantidade, tipo, id}: EditProductProps){
-    
-    const [ identifier] = useState(id);
-    const [ name, setName ] = useState(nome);
-    const [ price, setPrice ] = useState(preco);
-    const [ type, setType ] = useState(tipo);
-    const [ quantity, setQuantity] = useState(quantidade);
-
-    const { mutate, isSuccess } = useProductDataUpdate();
-
-    const resetInput = () => {
-        setName(nome);
-        setPrice(preco);
-        setType(tipo);
-        setQuantity(quantidade);
-    }
-
-    const handleEditOpen = () =>{
-        resetInput();
-        setIsEditOpen();
-    }
-
-    const update = () => {
-        const productData: ProductData = {
-            id: identifier,
-            name,
-            price,
-            type,
-            quantity
-        }
-        mutate(productData);
-        if(isSuccess){
-            handleEditOpen()
-        }
-    }
-
-    if(isEditOpen){
-        return(
-            <tr className="editProduct">
-                <td></td>
-                <td>Nome:<input type="text" value={name} onChange={event => setName(event.target.value)}/></td>
-                <td>Preço:<input type="number" value={price} onChange={event => setPrice((Number)(event.target.value))}/></td>
-                <td>Tipo:<input type="text" value={type} onChange={event => setType(event.target.value)}/></td>
-                <td>Quantidade:<input type="number" value={quantity} style={{width: "50%"}} onChange={event => setQuantity((Number)(event.target.value))}/></td>
-                <td>
-                    <button onClick={update}><MdAddCircle/></button>
-                    <button onClick={handleEditOpen}><MdClose/></button>
-                </td>
-            </tr>
-        )
-    }
-
 }
 
 export default Product

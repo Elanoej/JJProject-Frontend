@@ -1,0 +1,11 @@
+.product > .id {
+    width: 5%;
+}
+
+.product input {
+    width: 95%;
+}
+
+.product .td-options {
+    width: 10%;
+}

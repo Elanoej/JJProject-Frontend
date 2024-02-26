@@ -1,0 +1,11 @@
+.client > .id {
+    width: 5%;
+}
+
+.client input {
+    width: 95%;
+}
+
+.client .td-options {
+    width: 10%;
+}

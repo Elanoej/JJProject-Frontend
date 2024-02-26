@@ -1,7 +1,9 @@
-import { useState } from "react";
-import "./Overlay.css"
+import { ChangeEvent, useState } from "react";
 import { ClientData } from "../../interface/ClientData";
 import { useClientMutate } from "../../Hooks/useClientMutate";
+import { MdAdd, MdClose } from "react-icons/md";
+
+import "./Overlay.css"
 
 interface OverlayProps {
     isOpen: boolean,
@@ -10,47 +12,53 @@ interface OverlayProps {
 
 export function Overlay({isOpen, setOverlayOpen}: OverlayProps){
 
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [cellphone, setCellphone] = useState("");
-    const { mutate, isSuccess } = useClientMutate();
+    const [clientData, setClientData] = useState<ClientData>({
+        name: "",
+        address: "",
+        cellphone: ""
+    });
+    const { mutate } = useClientMutate();
     
     const handleOverlayOpen = () => {
         setOverlayOpen();
+        resetInput();
     }
 
     const resetInput = () => {
-        setName("");
-        setAddress("");
-        setCellphone("");
+        const data:ClientData = {
+            name: "",
+            address: "",
+            cellphone: ""
+        }
+        setClientData(data);
+    }
+
+    const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
+        const data: ClientData = {
+            ...clientData,
+            [event.target.accessKey]: event.target.value
+        }
+        setClientData(data);
     }
 
     const submit = () => {
-        const clientData: ClientData = {
-            name,
-            address,
-            cellphone,
-        }
-        mutate(clientData)
-        if(isSuccess){
-            resetInput();
-        }
+        mutate(clientData, {onSuccess: resetInput});
     }
 
     if(isOpen){
         return(
             <div className="overlay">
                 <div className="body">
-                   <button onClick={handleOverlayOpen} className="btn-close">X</button>
+                   <button onClick={handleOverlayOpen} className="btn-close"><MdClose/></button>
                     <form className="overlay-form">
                         <label>Nome:</label>
-                        <input type="text" value={name} onChange={event => setName(event.target.value)}/>
+                        <input type="text" accessKey="name" value={clientData.name} onChange={event => updateValue(event)}/>
                         <label>Endereço:</label>
-                        <input type="text" value={address} onChange={event => setAddress(event.target.value)}/>
+                        <input type="text" accessKey="address" value={clientData.address} onChange={event => updateValue(event)}/>
                         <label>Telefone:</label>
-                        <input type="text" value={cellphone} onChange={event => setCellphone(event.target.value)}/>
+                        <input type="text" accessKey="cellphone" value={clientData.cellphone} onChange={event => updateValue(event)}/>
                     </form>
-                   <button onClick={submit}>+</button>
+                    <button onClick={submit}><MdAdd/></button>
                 </div>
             </div>
         )

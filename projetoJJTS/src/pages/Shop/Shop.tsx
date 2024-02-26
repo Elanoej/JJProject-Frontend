@@ -1,8 +1,8 @@
-import "./Shop.css"
 import { useProductData } from "../../Hooks/useProductData"
 import Product from "../../components/Product/Product";
 import { useState } from "react";
 import { CreateModal } from "../../components/create-modal/create-modal";
+import "./Shop.css"
 
 function Shop() {
 
@@ -24,16 +24,14 @@ function Shop() {
                     </tr>
                 </thead>
                 <tbody className="shop-table-body">
-                    {data?.map(productData =>
-                        <Product
-                            id={productData.id}
-                            nome={productData.name}
-                            preco={productData.price}
-                            tipo={productData.type}
-                            quantidade={productData.quantity}
-                        />
-                    )}
-                    
+                    {data?.map(productData => 
+                    <Product 
+                        id={productData.id}
+                        name={productData.name}
+                        price={productData.price}
+                        quantity={productData.quantity}
+                        type={productData.type}
+                    />)}
                 </tbody>
                            
             </table>

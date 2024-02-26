@@ -18,7 +18,7 @@
     background-color: gray;
 }
 
-.body > button {
+.overlay-form > button {
     cursor: pointer;
     border: none;
     color: black;
@@ -31,13 +31,9 @@
     color: black;
     border-radius: 10px;
     transition-duration: 0.3s;
-    font-weight: 800;
 }
 
 .btn-close {
-    position: relative;
-    top: 50%;
-    left: 50%;
 }
 
 .overlay-form {

@@ -1,0 +1,29 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form > input,
+.form > select {
+    width: 100%;
+}
+
+.btn-div {
+    width: 100%;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-div button {
+    border-radius: 20px;
+    width: 50%;
+    padding: 2%;
+    transition: 0.5s;
+}
+
+.btn-div > button:hover {
+    box-shadow: 0px 0px 10px 5px rgb(0, 255, 247);
+}

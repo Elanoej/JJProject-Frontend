@@ -1,10 +1,20 @@
+import { useState } from "react";
 import { useServiceOrderData } from "../../Hooks/useServiceOrderData";
-import "./Oficina.css";
 import ServiceOrder from "../../components/ServiceOrder/ServiceOrder";
+import "./Oficina.css";
+import { useNavigate } from "react-router-dom";
 
 function Oficina() {
 
-    const { data } = useServiceOrderData(); 
+    const [ isOpen, setIsOpen] = useState(false);
+    const { data } = useServiceOrderData();
+    const navigate = useNavigate();
+
+    const navegateToOSCreate = () => {
+        if(confirm("Você será redirecionado para outra página. \nDeseja continuar?")){
+            navigate('/service-order-create');
+        }
+    }
 
     return (
         <div className="container-oficina">
@@ -13,7 +23,6 @@ function Oficina() {
                 <a href="/clientes">Clientes</a>
                 <a href="/aparelhos">Aparelhos</a>
             </div>
-
             <table className="oficina-table">
                 <thead className="oficina-main-thead">
                     <tr className="table-preset">
@@ -22,20 +31,13 @@ function Oficina() {
                         <th>Cliente</th>
                         <th>Modelo</th>
                     </tr>
-                    {data?.map(serviceOrder =>
-                        <ServiceOrder
-                            id={serviceOrder.id}
-                            data={serviceOrder.date}
-                            cliente={serviceOrder.client}
-                            detalhesDoProduto={serviceOrder.productDetails}
-                            inforCliente={serviceOrder.clientInfos}
-                            inforTec={serviceOrder.tecInfos}
-                            modeloDoProduto={serviceOrder.productModel}
-                        />
-                    )}
                 </thead>
+                <tbody>
+                    {data?.map(serviceOrder => <ServiceOrder serviceOrder={serviceOrder}/>)}
+                </tbody>
             </table>
-            
+            {/* <ServiceOrderModal isOpen={isOpen} setIsOpen={() => setIsOpen(!isOpen)}/> */}
+            <button className="btn-modal" onClick={navegateToOSCreate}>+</button>
         </div>
     )
 }

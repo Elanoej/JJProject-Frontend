@@ -1,8 +1,7 @@
 import axios, { AxiosPromise } from "axios"
-import { ClientData } from "../interface/ClientData";
 import { useQuery } from "@tanstack/react-query";
-
-const API_URL = "http://localhost:8080"
+import { ClientData } from "../interface/ClientData";
+import { API_URL } from "../Utils/Utils";
 
 const fetchData = async (): AxiosPromise<ClientData[]> => {
     const response = axios.get(API_URL + "/client");
