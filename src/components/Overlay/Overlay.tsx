@@ -17,8 +17,9 @@ export function Overlay({isOpen, setOverlayOpen}: OverlayProps){
         address: "",
         cellphone: ""
     });
+
     const { mutate } = useClientMutate();
-    
+
     const handleOverlayOpen = () => {
         setOverlayOpen();
         resetInput();
@@ -45,10 +46,16 @@ export function Overlay({isOpen, setOverlayOpen}: OverlayProps){
         mutate(clientData, {onSuccess: resetInput});
     }
 
+    const checkKeyDown = (ev: React.KeyboardEvent<HTMLDivElement>) => {
+        if(ev.key == `Escape`){
+            handleOverlayOpen();
+        }
+    }
+
     if(isOpen){
         return(
-            <div className="overlay">
-                <div className="body">
+            <div className="overlay" onKeyDown={checkKeyDown} >
+                <div className="overlay-body">
                    <button onClick={handleOverlayOpen} className="btn-close"><MdClose/></button>
                     <form className="overlay-form">
                         <label>Nome:</label>

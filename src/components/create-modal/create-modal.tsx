@@ -6,7 +6,7 @@ import "./CreateModal.css"
 
 interface InputProps {
     label: string,
-    value: string | number,
+    value: string | number | undefined,
     updateValue(value: any): void,
     accessKey: string
 }
@@ -30,9 +30,9 @@ export function CreateModal({isOpen, setModalOpen}: CreateModalProps){
     const [ data, setData ] = useState<ProductData>({
         id: 0,
         name: "",
-        price: 0,
+        price: undefined,
         type: "",
-        quantity: 0
+        quantity: undefined
     });
 
     const productData = useProductDataMutate();
@@ -41,9 +41,9 @@ export function CreateModal({isOpen, setModalOpen}: CreateModalProps){
         const product : ProductData = {
             id: 0,
             name: "",
-            price: 0,
+            price: undefined,
             type: "",
-            quantity: 0
+            quantity: undefined
         }
         setData(product);
     }

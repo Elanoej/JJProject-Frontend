@@ -1,7 +1,7 @@
 export interface ProductData {
     id: number,
     name: string,
-    price: number,
+    price: number | undefined,
     type: string,
-    quantity: number
+    quantity: number | undefined
 }

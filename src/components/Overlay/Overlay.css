@@ -8,7 +8,7 @@
     z-index: 1000;
 }
 
-.body {
+.overlay-body {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -18,7 +18,7 @@
     background-color: gray;
 }
 
-.overlay-form > button {
+.overlay-body > button {
     cursor: pointer;
     border: none;
     color: black;
@@ -31,9 +31,6 @@
     color: black;
     border-radius: 10px;
     transition-duration: 0.3s;
-}
-
-.btn-close {
 }
 
 .overlay-form {
