@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useServiceOrderData } from "../../Hooks/useServiceOrderData";
 import ServiceOrder from "../../components/ServiceOrder/ServiceOrder";
 import "./Oficina.css";
@@ -6,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 function Oficina() {
 
-    const [ isOpen, setIsOpen] = useState(false);
     const { data } = useServiceOrderData();
     const navigate = useNavigate();
 
@@ -36,7 +34,6 @@ function Oficina() {
                     {data?.map(serviceOrder => <ServiceOrder serviceOrder={serviceOrder}/>)}
                 </tbody>
             </table>
-            {/* <ServiceOrderModal isOpen={isOpen} setIsOpen={() => setIsOpen(!isOpen)}/> */}
             <button className="btn-modal" onClick={navegateToOSCreate}>+</button>
         </div>
     )

@@ -15,11 +15,11 @@ function App() {
       <div className="body-app-div">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/loja" element={<Shop />} />
-            <Route path="/oficina" element={<Oficina />} />
-            <Route path="/clientes" element={<Clients />}></Route>
-            <Route path="/service-order-create" element={<ServiceOrderCreate />}></Route>
+            <Route path="./" element={<Home />} />
+            <Route path="./loja" element={<Shop />} />
+            <Route path="./oficina" element={<Oficina />} />
+            <Route path="./clientes" element={<Clients />}></Route>
+            <Route path="./service-order-create" element={<ServiceOrderCreate />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

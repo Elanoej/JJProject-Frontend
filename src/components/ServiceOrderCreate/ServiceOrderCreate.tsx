@@ -1,12 +1,7 @@
-import { MdClose } from 'react-icons/md'
 import { useClientData } from '../../Hooks/useClientData';
 import { ClientData } from '../../interface/ClientData';
 
 import './ServiceOrderCreate.css';
-
-interface ServiceOrderModalProps {
-
-}
 
 interface MySelectorProps {
     options: ClientData[] | undefined

@@ -9,9 +9,11 @@ function Header() {
                 <h1>JJ Eletrônica</h1>
             </header>
             <div className='navigation-menu'>
-                <ul><li><a href="/" >Home</a></li></ul>
-                <ul><li><a href="/loja" >Loja</a></li></ul>
-                <ul><li><a href="/clientes" >Clientes</a></li></ul>
+                <ul>
+                    <li><a href="./" >Home</a></li>
+                    <li><a href="./loja" >Loja</a></li>
+                    <li><a href="./clientes" >Clientes</a></li>
+                </ul>
             </div>
         </nav> 
     )
