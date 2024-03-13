@@ -12,14 +12,6 @@
   align-items: center;
 }
 
-.table-preset > td {
-  width: 300px;
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
-  align-items: center;
-}
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -41,4 +33,53 @@
 
 button {
   cursor: pointer;
+}
+
+/* Table presets*/
+.table {
+  width: 80vw;
+}
+
+.table-preset > tr > * {
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.87);
+  border-width: 1px;
+  align-items: center;
+}
+
+/* Table inputs style */
+.product input {
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 5px;
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.87);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.product input:enabled {
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
+}
+
+.btn-modal {
+  cursor: pointer;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+
+  background-color: rgba(255, 255, 255, 0.87);
+  color: black;
+  border-radius: 10px;
+  transition-duration: 0.3s;
+}
+
+.btn-modal:hover {
+  background-color: #555555;
+  color: rgba(255, 255, 255, 0.87);
 }

@@ -10,9 +10,9 @@ function Header() {
             </header>
             <div className='navigation-menu'>
                 <ul>
-                    <li><a href="./" >Home</a></li>
-                    <li><a href="./loja" >Loja</a></li>
-                    <li><a href="./clientes" >Clientes</a></li>
+                    <li><a href="./#/" >Home</a></li>
+                    <li><a href="./#/loja" >Loja</a></li>
+                    <li><a href="./#/clientes" >Clientes</a></li>
                 </ul>
             </div>
         </nav> 

@@ -13,17 +13,25 @@ function Clients() {
     return(
         <div className="clients-container">
             <h1>Clientes</h1>
-            <table className="client-table">
-                <thead className="table-head">
+            <table className="table table-client">
+                <thead className="table-preset">
                     <tr>
-                        <td>Id</td>
-                        <td>Nome</td>
-                        <td>Endereço</td>
-                        <td>Celular</td>
-                        <td>Opções</td>
+                        <th style={{width: "5%"}}>Id</th>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Celular</th>
+                        <th style={{width: "10%"}}>Opções</th>
                     </tr>
                 </thead>
                 <tbody className="table-body">
+                    {/* Client Test MOCK */}
+                    <Client 
+                        id={77}
+                        name="Client Name"
+                        address="Client Address"
+                        cellphone="Client Cellphone"
+                        serviceOrders={[]}
+                    />  
                     {data?.map(clientData => 
                     <Client 
                         id={clientData.id}
