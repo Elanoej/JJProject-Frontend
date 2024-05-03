@@ -1,0 +1,8 @@
+.search-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.dto-div {
+    margin: 5px;
+}

@@ -1,14 +1,17 @@
+import axios, { AxiosPromise } from "axios"
 import { useQuery } from "@tanstack/react-query";
-import axios, { AxiosPromise } from "axios";
 import { API_URL } from "../Utils/Utils";
+import { SearchData } from "../interface/SearchData";
 
-const fetchData = async (search: string): AxiosPromise<RepresetationModel[]> => {
-    return axios.get(`${API_URL}/search/${search}`);
+const fetchData = async (pathVariable: string): AxiosPromise<SearchData[]> => {
+    const response = axios.get(API_URL + "/search/" + pathVariable);
+    return response;
 }
 
-export function useSearchData(search: string){
+export function useSearchData(pathVariable: string){
     const query = useQuery({
-        queryFn: () => fetchData(search),
+        queryKey: ['search-data', pathVariable],
+        queryFn: ({queryKey}) => fetchData(queryKey[1]),
         retry: 2
     })
 

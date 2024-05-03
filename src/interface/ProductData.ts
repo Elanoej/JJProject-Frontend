@@ -1,4 +1,4 @@
-export interface ProductData extends RepresetationModel{
+export interface ProductData{
     id: number,
     name: string,
     price: number | undefined,

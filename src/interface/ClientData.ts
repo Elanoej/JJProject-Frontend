@@ -6,7 +6,7 @@ interface Address {
     bairro: string,
 }
 
-export interface ClientData extends RepresetationModel{
+export interface ClientData{
     id?: number,
     name: string,
     address: Address,
