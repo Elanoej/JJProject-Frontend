@@ -1,9 +1,15 @@
 import { ServiceOrderData } from "./ServiceOrderData";
 
-export interface ClientData {
+interface Address {
+    logradouro: string,
+    complemento: string,
+    bairro: string,
+}
+
+export interface ClientData extends RepresetationModel{
     id?: number,
     name: string,
-    address: string,
+    address: Address,
     cellphone: string,
     serviceOrders?: ServiceOrderData[];
 }

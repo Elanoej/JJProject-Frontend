@@ -1,0 +1,7 @@
+.searchbar-container .form-container{
+    display: flex;
+}
+
+.searchbar-container .form-container > *{
+    border: 1px solid rgb(29, 29, 29);
+}

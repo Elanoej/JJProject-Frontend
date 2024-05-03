@@ -6,8 +6,12 @@ import Header from "./components/Header/Header";
 import Shop from "./pages/Shop/Shop";
 import Clients from "./pages/Clients/Clients";
 import { ServiceOrderCreate } from "./components/ServiceOrderCreate/ServiceOrderCreate";
+import { Search } from "./pages/Search/Search";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
+
+  const [pathVariable, setPathVariable] = useState(window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
 
   return (
     <div>
@@ -16,6 +20,7 @@ function App() {
         <HashRouter>
           <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="/search/*" element={<Search pathVariable={pathVariable} />}/>
             <Route path="/loja" element={<Shop />}/>
             <Route path="/oficina" element={<Oficina />}/>
             <Route path="/clientes" element={<Clients />}/>

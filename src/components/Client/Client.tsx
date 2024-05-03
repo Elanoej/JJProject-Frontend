@@ -21,6 +21,16 @@ function Client(clientData: ClientData) {
     const clientDelete = useClientMutateDelete();
 
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if(event.target.accessKey == "address"){
+            setData({
+                ...data,
+                address: {
+                    ...data.address,
+                    logradouro: event.target.value
+                }
+            })
+            return
+        }
         setData({
             ...data,
             [event.target.accessKey]: event.target.value
@@ -58,7 +68,7 @@ function Client(clientData: ClientData) {
         <tr className={`client ${data.id}`}>
             <td className="id"><input disabled={true} type="number" value={data.id}/></td>
             <td><input accessKey="name" disabled={!isEditing} type="text" value={data?.name} onChange={event => handleOnChange(event)}/></td>
-            <td><input accessKey="address" disabled={!isEditing} type="text" value={data?.address} onChange={event => handleOnChange(event)}/></td>
+            <td><input accessKey="address" disabled={!isEditing} type="text" value={data?.address.logradouro} onChange={event => handleOnChange(event)}/></td>
             <td><input accessKey="cellphone" disabled={!isEditing} type="text" value={data?.cellphone} onChange={event => handleOnChange(event)}/></td>
             <td className="td-options">
                 <button className="btn-options" type="button" onClick={handleEdit}>{isEditing ? <MdClose/> : <MdEdit/>}</button>

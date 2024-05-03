@@ -1,6 +1,6 @@
 import { ClientData } from "./ClientData";
 
-export interface ServiceOrderData {
+export interface ServiceOrderData extends RepresetationModel {
     id: number,
     date: Date,
     client: ClientData,

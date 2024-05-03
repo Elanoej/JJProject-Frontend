@@ -48,7 +48,7 @@ function Product(productData: ProductData) {
         setIsEditing(!isEditing);
     }
 
-    const submit = ()=>{
+    const submit = () => {
         productUpdate.mutate(data);
         setIsEditing(!isEditing);
     }
@@ -56,14 +56,14 @@ function Product(productData: ProductData) {
     return (
         <tr className="product">
             <td><input type="number" value={data.id} disabled={true}/></td>
-            <td><input accessKey="name" type="text" value={data.name} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
-            <td><input accessKey="price" type={isEditing ? 'number':'text'} value={isEditing ? data.price: `R$${data.price},00`} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
-            <td><input accessKey="type" type="text" value={data.type} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
-            <td><input accessKey="quantity" type="number" value={data.quantity} disabled={!isEditing} onChange={event => handleOnChange(event)}/></td>
+            <td><input accessKey="name" type="text" value={data.name} disabled={!isEditing} onChange={handleOnChange}/></td>
+            <td><input accessKey="price" min={0} type={isEditing ? 'number':'text'} value={isEditing ? data.price: `R$${data.price},00`} disabled={!isEditing} onChange={handleOnChange}/></td>
+            <td><input accessKey="type" type="text" value={data.type} disabled={!isEditing} onChange={handleOnChange}/></td>
+            <td><input accessKey="quantity" min={0} type="number" value={data.quantity} disabled={!isEditing} onChange={handleOnChange}/></td>
             <td className="td-options">
-                <button className="btn-options" type="button" onClick={() => handleEdit()}>{isEditing ? <MdClose/> : <MdEdit/>}</button>
+                <button className="btn-options" type="button" onClick={handleEdit}>{isEditing ? <MdClose/> : <MdEdit/>}</button>
                 <button hidden={!isEditing} onClick={submit}><MdCheck/></button>
-                <button className="btn-options" type="button" onClick={()=> handleDelete()}><MdDelete/></button>
+                <button className="btn-options" type="button" onClick={handleDelete}><MdDelete/></button>
             </td>
         </tr>
     )

@@ -28,7 +28,7 @@ function Clients() {
                     <Client 
                         id={77}
                         name="Client Name"
-                        address="Client Address"
+                        address={ {logradouro:"Client Address", complemento:"Client Address", bairro:"Client Address"} }
                         cellphone="Client Cellphone"
                         serviceOrders={[]}
                     />  
